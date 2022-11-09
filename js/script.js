@@ -1,24 +1,33 @@
-// Set current year
+// SET CURRENT YEAR:
 const yearEl = document.querySelector(".year");
 const currentYear = new Date().getFullYear();
 yearEl.textContent = currentYear;
 
-// Make mobile navigation work
+// MAKE MOBILE NAVIGATION WORK:
+// wrong way
+/* const headerEl = document.querySelector(".header");
 const btnNavEl = document.querySelector(".btn-mobile-nav");
-const headerEl = document.querySelector(".header");
 const navLinkEls = document.querySelectorAll(".main-nav-link");
 
 btnNavEl.addEventListener("click", function () {
   headerEl.classList.toggle("nav-open");
 });
-// TOTO: refine this code using event delegation
+
 navLinkEls.forEach(function (link) {
   link.addEventListener("click", function () {
     headerEl.classList.toggle("nav-open");
   });
+}); */
+
+// right way - using event delegation
+const headerEl = document.querySelector(".header");
+headerEl.addEventListener("click", function (event) {
+  if (event.target.classList.value.includes("icon-mobile-nav" || "main-nav-link")) {
+    headerEl.classList.toggle("nav-open");
+  }
 });
 
-// Sticky navigation
+// STICKY NAVIGATION:
 const sectionHeroEl = document.querySelector(".section-hero");
 
 const obs = new IntersectionObserver(
